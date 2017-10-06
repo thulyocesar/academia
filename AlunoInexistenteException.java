@@ -1,5 +1,3 @@
-package br.academia;
-
 public class AlunoInexistenteException extends Exception {
 	
 	/**

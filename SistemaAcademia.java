@@ -1,31 +1,46 @@
-package br.academia;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 public class SistemaAcademia {
+
+	private static List<Aluno> alunos = new ArrayList<Aluno>();;
+	private Object nome;
+	private Object matricula;
 	
-	private List<Aluno> alunos;
-	
-	public SistemaAcademia(){
-		this.alunos = new ArrayList<Aluno>();
-	}
-	
-	public void cadastrarAluno(String nome, String sexo, String matricula)throws AlunoInexistenteException {
-		for(Aluno a:this.alunos){
-			if(a.getMatricula().equals(matricula)){
-				throw new AlunoInexistenteException("Já existe aluno com essa matricula: "+matricula);
-			}
-		}
-		Aluno a = new Aluno(nome, sexo, matricula);
-		this.alunos.add(a);
+
+	public SistemaAcademia() {
 		
 	}
+			
+	public void cadastrarAluno(String nome, String sexo, int matricula, String TipoDeExercicio)
+			throws AlunoInexistenteException {
 	
-	public void alunosMatriculados(){
-		JOptionPane.showMessageDialog(null, this.alunos.toString());
+			
+
+		for (Aluno a : this.alunos) {
+			if (a.getMatricula() == (matricula)) {
+				throw new AlunoInexistenteException("Jï¿½ existe aluno com essa matricula: " + matricula);
+			}
+		}
+		Aluno a = new Aluno(nome, sexo, matricula, TipoDeExercicio);
+		this.alunos.add(a);
+
+	}
+
+	public String alunosMatriculados() {
+		String alunos = "";
+		if (this.alunos.size() == 0) {
+			return null;
+		} else {
+
+			for (Aluno a : this.alunos) {
+				alunos += a.toString() + "\n";
+			}
+		}
+		return alunos;
+
 	}
 
 	public List<Aluno> getAlunos() {
@@ -35,5 +50,6 @@ public class SistemaAcademia {
 	public void setAlunos(List<Aluno> alunos) {
 		this.alunos = alunos;
 	}
+
 
 }
